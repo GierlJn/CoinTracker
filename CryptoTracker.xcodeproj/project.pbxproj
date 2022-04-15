@@ -18,6 +18,7 @@
 		B9CA7E09280845A900FCC4B9 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CA7E08280845A900FCC4B9 /* CircleButtonView.swift */; };
 		B9D83A7A2809735200D14135 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D83A792809735200D14135 /* Double.swift */; };
 		B9D83A7C2809746C00D14135 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D83A7B2809746C00D14135 /* MockData.swift */; };
+		B9D83A7E280975FE00D14135 /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D83A7D280975FE00D14135 /* CoinRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		B9CA7E08280845A900FCC4B9 /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		B9D83A792809735200D14135 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		B9D83A7B2809746C00D14135 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		B9D83A7D280975FE00D14135 /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				B9CA7E042808446A00FCC4B9 /* HomeView.swift */,
+				B9D83A7D280975FE00D14135 /* CoinRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			files = (
 				B9CA7DEE2808431000FCC4B9 /* ContentView.swift in Sources */,
 				B9CA7E052808446A00FCC4B9 /* HomeView.swift in Sources */,
+				B9D83A7E280975FE00D14135 /* CoinRowView.swift in Sources */,
 				B9D83A7A2809735200D14135 /* Double.swift in Sources */,
 				B9CA7DEC2808431000FCC4B9 /* CryptoTrackerApp.swift in Sources */,
 				B9D83A7C2809746C00D14135 /* MockData.swift in Sources */,

@@ -57,6 +57,14 @@ struct CoinModel: Identifiable, Codable {
     case currentHoldings
   }
   
+  var wrappedPriceChangePercentage24H: Double{
+    priceChangePercentage24H ?? 0
+  }
+  
+  var wrappedCurrentPrice: Double{
+    currentPrice ?? 0
+  }
+  
   mutating func updateHoldings(amount: Double) -> CoinModel {
     self.currentHoldings = amount
     return self
@@ -64,6 +72,10 @@ struct CoinModel: Identifiable, Codable {
   
   var currentHoldingsValue: Double {
     return (currentHoldings ?? 0) * currentPrice
+  }
+  
+  var wrappedCurrentHoldings: Double{
+    currentHoldings ?? 0
   }
   
   var rank: Int {
