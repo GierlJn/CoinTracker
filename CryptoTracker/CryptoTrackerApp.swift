@@ -14,6 +14,7 @@ struct CryptoTrackerApp: App {
           NavigationView{
             HomeView()
               .navigationBarHidden(true)
+              .environmentObject(HomeViewModel())
           }
         }
     }

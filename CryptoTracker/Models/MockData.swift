@@ -10,6 +10,9 @@ import Foundation
 #if DEBUG
 
 extension CoinModel{
+  
+  static let mockDataArray = Array.init(repeating: mockData, count: 10)
+  
   static let mockData = CoinModel(id: "1", symbol: "BTC", name: "Bitcoin", image: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579", currentPrice: 40191, marketCap: 763903413933, marketCapRank: 1, fullyDilutedValuation: 843770289818, totalVolume: 24714616738, high24H: 41285, low24H: 39708, priceChange24H: -992.289127170727, priceChangePercentage24H: -2.40947, marketCapChange24H: -18070753743.52649, marketCapChangePercentage24H: -2.31091, circulatingSupply: 19012250.0, totalSupply: 21000000.0, maxSupply: 21000000.0, ath: 69045, athChangePercentage: -41.7956, athDate: "2021-11-10T14:24:11.849Z", atl: 67.81, atlChangePercentage: 59165.1375, atlDate: "2013-07-06T00:00:00.000Z", lastUpdated: "2022-04-15T09:38:35.210Z", sparklineIn7D: SparklineIn7D(price: [
     43680.8573169927,
     43619.56246981242,

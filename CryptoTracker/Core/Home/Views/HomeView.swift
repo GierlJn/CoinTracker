@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
   
-  @State private var showPortfolio: Bool = false
+  @EnvironmentObject private var viewModel: HomeViewModel
   
   var body: some View {
     ZStack{
@@ -18,45 +18,94 @@ struct HomeView: View {
       
       VStack{
         headerView
+        columnTitles
+        if viewModel.showPortfolio{
+          portfolioCoinsList
+        }else{
+          allCoinsList
+        }
         Spacer()
+      }
+      .task {
+        await viewModel.fetchAllCoins()
       }
     }
   }
 }
 
-struct HomeView_Previews: PreviewProvider {
-  static var previews: some View {
-    NavigationView{
-      HomeView()
-        .navigationBarHidden(true)
-    }
-  }
-}
-
 extension HomeView{
-  
   var headerView: some View{
     HStack{
-      CircleButtonView(iconName: showPortfolio ? "plus" : "info")
+      CircleButtonView(iconName: viewModel.showPortfolio ? "plus" : "info")
         .background{
-          CircleButtonAnimationView(animate: $showPortfolio)
+          CircleButtonAnimationView(animate: $viewModel.showPortfolio)
         }
       Spacer()
-      Text(showPortfolio ? "Portfolio" : "Live Prices")
+      Text(viewModel.showPortfolio ? "Portfolio" : "Live Prices")
         .font(.headline)
         .fontWeight(.heavy)
         .foregroundColor(Color.colorTheme.accent)
         .animation(.none)
       Spacer()
       CircleButtonView(iconName: "chevron.right")
-        .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
+        .rotationEffect(Angle(degrees: viewModel.showPortfolio ? 180 : 0))
         .onTapGesture {
           withAnimation(.spring()){
-            showPortfolio.toggle()
+            viewModel.showPortfolio.toggle()
           }
         }
         .padding(.horizontal)
     }
-    
+  }
+  
+  var allCoinsList: some View{
+    List(viewModel.allCoins){ coin in
+      CoinRowView(coin: coin, showHoldings: false)
+        .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
+        .task{
+          if coin == viewModel.allCoins.last{
+            await viewModel.fetchAllCoins()
+          }
+        }
+    }
+    .listStyle(PlainListStyle())
+    .transition(.move(edge: .trailing))
+  }
+  
+  var portfolioCoinsList: some View{
+    List(viewModel.portfolioCoins){ coin in
+      CoinRowView(coin: coin, showHoldings: false)
+        .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
+        .task{
+          if coin == viewModel.allCoins.last{
+            await viewModel.fetchAllCoins()
+          }
+        }
+    }
+    .listStyle(PlainListStyle())
+    .transition(.move(edge: .leading))
+  }
+  
+  var columnTitles: some View{
+    HStack{
+      Text("Coins")
+      Spacer()
+      if viewModel.showPortfolio{
+        Text("Holdings")
+      }
+      Spacer()
+      Text("Price")
+    }
+    .foregroundColor(Color.colorTheme.secondaryText)
+    .font(.caption)
+    .padding(.horizontal)
   }
 }
+
+//struct HomeView_Previews: PreviewProvider {
+//  static var previews: some View {
+//      HomeView()
+//        .navigationBarHidden(true)
+//        .environmentObject(HomeViewModel())
+//  }
+//}
