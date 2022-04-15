@@ -26,9 +26,9 @@ struct HomeView: View {
         }
         Spacer()
       }
-      .task {
-        await viewModel.fetchAllCoins()
-      }
+//      .task {
+//        await viewModel.fetchAllCoins()
+//      }
     }
   }
 }
@@ -64,7 +64,7 @@ extension HomeView{
         .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
         .task{
           if coin == viewModel.allCoins.last{
-            await viewModel.fetchAllCoins()
+            //await viewModel.fetchAllCoins()
           }
         }
     }
@@ -78,7 +78,7 @@ extension HomeView{
         .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
         .task{
           if coin == viewModel.allCoins.last{
-            await viewModel.fetchAllCoins()
+            //await viewModel.fetchAllCoins()
           }
         }
     }

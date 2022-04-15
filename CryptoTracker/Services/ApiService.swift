@@ -28,7 +28,7 @@ class ApiService{
   func fetchCoins(page: Int, urlSession: URLSession = URLSession.shared) async throws -> [CoinModel]{
     let endpoint = "coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=\(page)&sparkline=true&price_change_percentage=24h"
     
-    guard let url = URL(string: baseUrl + endpoint) else { throw ApiError.fetchError}
+    guard let url = URL(string: baseUrl + endpoint) else { throw URLError(.badURL) }
     
     do{
       let contents = try await urlSession.data(from: url)
