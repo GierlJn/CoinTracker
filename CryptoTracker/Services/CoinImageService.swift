@@ -13,14 +13,15 @@ class CoinImageService{
   @Published var image: UIImage? = nil
   var cancellable: AnyCancellable?
   
-  init(imageUrl: String){
-    getImage(imageUrl)
+  init(coin: CoinModel){
+    getImage(coin)
   }
   
-  private func getImage(_ url: String){
-    guard let url = URL(string: url) else { return }
+  private func getImage(_ coin: CoinModel){
+    guard let url = URL(string: coin.image) else { return }
     
-    if let image = ImageCache[url]{
+    //if let image = ImageCache[url]{
+    if let image = LocalFileManager.shared.getImage(folderName: "cachedImages", imageName: coin.name){
       self.image = image
       return
     }
@@ -31,7 +32,8 @@ class CoinImageService{
       }
       .sink(receiveCompletion: NetworkManager.handleCompletion) { [unowned self] image in
         self.image = image
-        ImageCache[url] = image
+        //ImageCache[url] = image
+        LocalFileManager.shared.saveImage(folderName: "cachedImages", imageName: coin.name, image: image!)
         self.cancellable?.cancel()
       }
   }

@@ -14,9 +14,9 @@ class CoinImageViewModel: ObservableObject{
   private var cancellables = Set<AnyCancellable>()
   private let coinImageService: CoinImageService
   
-  init(imageUrl: String){
+  init(coin: CoinModel){
     isLoading = true
-    coinImageService = CoinImageService(imageUrl: imageUrl)
+    coinImageService = CoinImageService(coin: coin)
     coinImageService.$image
       .sink(receiveCompletion: { [weak self] _ in
         self?.isLoading = false

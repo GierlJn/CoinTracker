@@ -15,7 +15,7 @@ struct CoinRowView: View {
     var body: some View {
       HStack{
         Text("\(coin.rank)")
-        CoinImageView(imageUrl: coin.image)
+        CoinImageView(coin: coin)
           .frame(width: 20, height: 20)
         
         
