@@ -37,7 +37,7 @@ class NetworkManager{
     return output.data
   }
   
-  static func handleCompletion(completion:  Subscribers.Completion<Publishers.Decode<AnyPublisher<Data, Error>, [CoinModel], JSONDecoder>.Failure>){
+  static func handleCompletion(completion:  Subscribers.Completion<Error>){
     switch completion{
     case .finished:
       break
