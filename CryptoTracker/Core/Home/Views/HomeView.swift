@@ -18,8 +18,8 @@ struct HomeView: View {
       
       VStack{
         headerView
+        HomeStatsView()
         SearchBarView(input: $viewModel.searchText)
-        
         columnTitles
         if viewModel.showPortfolio{
           portfolioCoinsList

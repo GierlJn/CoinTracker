@@ -28,7 +28,7 @@ struct StatisticView: View {
         .font(.caption2)
         .foregroundColor((statistic.percentageChange ?? 0) > 0 ? .colorTheme.green : .colorTheme.red)
         .opacity((statistic.percentageChange != nil) ? 1 : 0)
-      }
+      }.padding()
     }
 }
 
