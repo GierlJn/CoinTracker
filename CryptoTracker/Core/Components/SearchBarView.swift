@@ -16,6 +16,7 @@ struct SearchBarView: View {
         Image(systemName: "magnifyingglass")
           .foregroundColor(Color.colorTheme.accent)
         TextField("Search coin", text: $input)
+          .disableAutocorrection(true)
           .overlay(alignment: .trailing){
             Image(systemName: "xmark.circle.fill")
               .foregroundColor(Color.colorTheme.accent)
