@@ -9,6 +9,14 @@ import Foundation
 
 #if DEBUG
 
+extension StatisticModel{
+  
+  static let mockDataMC = StatisticModel(title: "Market Cap", value: "$12B", percentageChange: 3.1)
+  static let mockDataVol = StatisticModel(title: "Total Volume", value: "$1.2T")
+  static let mockDataPorVal = StatisticModel(title: "Portfolio Value", value: "$50k", percentageChange: -30.3)
+  
+}
+
 extension CoinModel{
   
   static let mockDataArray = Array.init(repeating: mockData, count: 10)
