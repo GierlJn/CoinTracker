@@ -13,6 +13,7 @@
 		B939742E280C3887005FD439 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B939742D280C3887005FD439 /* LocalFileManager.swift */; };
 		B955EDFA280D5A6200ECD290 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B955EDF9280D5A6200ECD290 /* Assets.xcassets */; };
 		B955EDFC280D5BDC00ECD290 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B955EDFB280D5BDC00ECD290 /* SearchBarView.swift */; };
+		B955EDFE280D8CAC00ECD290 /* StatisticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B955EDFD280D8CAC00ECD290 /* StatisticModel.swift */; };
 		B9C0AFB828084A8A004907BF /* CircleButtonAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C0AFB728084A8A004907BF /* CircleButtonAnimationView.swift */; };
 		B9C0AFBB280852FF004907BF /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C0AFBA280852FF004907BF /* CoinModel.swift */; };
 		B9C13C352809B65A00397D2B /* CoinDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C13C342809B65A00397D2B /* CoinDataService.swift */; };
@@ -38,6 +39,7 @@
 		B939742D280C3887005FD439 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		B955EDF9280D5A6200ECD290 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B955EDFB280D5BDC00ECD290 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		B955EDFD280D8CAC00ECD290 /* StatisticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticModel.swift; sourceTree = "<group>"; };
 		B9C0AFB728084A8A004907BF /* CircleButtonAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonAnimationView.swift; sourceTree = "<group>"; };
 		B9C0AFBA280852FF004907BF /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		B9C13C342809B65A00397D2B /* CoinDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDataService.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				B9C0AFBA280852FF004907BF /* CoinModel.swift */,
+				B955EDFD280D8CAC00ECD290 /* StatisticModel.swift */,
 				B9D83A7B2809746C00D14135 /* MockData.swift */,
 			);
 			path = Models;
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B955EDFE280D8CAC00ECD290 /* StatisticModel.swift in Sources */,
 				B9CA7DEE2808431000FCC4B9 /* ContentView.swift in Sources */,
 				B9CA7E052808446A00FCC4B9 /* HomeView.swift in Sources */,
 				B91ED38C280AC5C700941C04 /* CoinImageView.swift in Sources */,
