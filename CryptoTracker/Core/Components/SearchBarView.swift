@@ -23,6 +23,7 @@ struct SearchBarView: View {
               .padding()
               .onTapGesture {
                 input = ""
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
               }
           }
         
