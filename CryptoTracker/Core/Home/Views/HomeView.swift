@@ -9,7 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
   
-  @EnvironmentObject private var viewModel: HomeViewModel
+  @EnvironmentObject private var vm: HomeViewModel
+  @State var showsPortfolioView = false
   
   var body: some View {
     ZStack{
@@ -19,9 +20,10 @@ struct HomeView: View {
       VStack{
         headerView
         HomeStatsView()
-        SearchBarView(input: $viewModel.searchText)
+        SearchBarView(input: $vm.searchText)
+          .padding()
         columnTitles
-        if viewModel.showPortfolio{
+        if vm.showPortfolio{
           portfolioCoinsList
         }else{
           allCoinsList
@@ -32,28 +34,35 @@ struct HomeView: View {
 //        await viewModel.fetchAllCoins()
 //      }
     }
+    .sheet(isPresented: $showsPortfolioView) {
+      PortfolioView().environmentObject(vm)
+    }
   }
 }
 
 extension HomeView{
   var headerView: some View{
     HStack{
-      CircleButtonView(iconName: viewModel.showPortfolio ? "plus" : "info")
-        .background{
-          CircleButtonAnimationView(animate: $viewModel.showPortfolio)
-        }
+      Button {
+        if vm.showPortfolio{ showsPortfolioView = true }
+      } label: {
+        CircleButtonView(iconName: vm.showPortfolio ? "plus" : "info")
+          .background{
+            CircleButtonAnimationView(animate: $vm.showPortfolio)
+          }
+      }
       Spacer()
-      Text(viewModel.showPortfolio ? "Portfolio" : "Live Prices")
+      Text(vm.showPortfolio ? "Portfolio" : "Live Prices")
         .font(.headline)
         .fontWeight(.heavy)
         .foregroundColor(Color.colorTheme.accent)
         .animation(.none)
       Spacer()
       CircleButtonView(iconName: "chevron.right")
-        .rotationEffect(Angle(degrees: viewModel.showPortfolio ? 180 : 0))
+        .rotationEffect(Angle(degrees: vm.showPortfolio ? 180 : 0))
         .onTapGesture {
           withAnimation(.spring()){
-            viewModel.showPortfolio.toggle()
+            vm.showPortfolio.toggle()
           }
         }
         .padding(.horizontal)
@@ -61,11 +70,11 @@ extension HomeView{
   }
   
   var allCoinsList: some View{
-    List(viewModel.allCoins){ coin in
+    List(vm.allCoins){ coin in
       CoinRowView(coin: coin, showHoldings: false)
         .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
         .task{
-          if coin == viewModel.allCoins.last{
+          if coin == vm.allCoins.last{
             //await viewModel.fetchAllCoins()
           }
         }
@@ -75,11 +84,11 @@ extension HomeView{
   }
   
   var portfolioCoinsList: some View{
-    List(viewModel.portfolioCoins){ coin in
+    List(vm.portfolioCoins){ coin in
       CoinRowView(coin: coin, showHoldings: false)
         .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
         .task{
-          if coin == viewModel.allCoins.last{
+          if coin == vm.allCoins.last{
             //await viewModel.fetchAllCoins()
           }
         }
@@ -92,7 +101,7 @@ extension HomeView{
     HStack{
       Text("Coins")
       Spacer()
-      if viewModel.showPortfolio{
+      if vm.showPortfolio{
         Text("Holdings")
       }
       Spacer()
@@ -104,10 +113,10 @@ extension HomeView{
   }
 }
 
-//struct HomeView_Previews: PreviewProvider {
-//  static var previews: some View {
-//      HomeView()
-//        .navigationBarHidden(true)
-//        .environmentObject(HomeViewModel())
-//  }
-//}
+struct HomeView_Previews: PreviewProvider {
+  static var previews: some View {
+      HomeView()
+        .navigationBarHidden(true)
+        .environmentObject(HomeViewModel())
+  }
+}
