@@ -33,6 +33,7 @@
 		B9D83A842809836F00D14135 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D83A832809836F00D14135 /* HomeViewModel.swift */; };
 		B9D83A872809846C00D14135 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D83A862809846C00D14135 /* ApiService.swift */; };
 		B9DA1416280EACB200AA135E /* MarketDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1415280EACB200AA135E /* MarketDataModel.swift */; };
+		B9DA1418280EB04A00AA135E /* MarketDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1417280EB04A00AA135E /* MarketDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		B9D83A832809836F00D14135 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B9D83A862809846C00D14135 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		B9DA1415280EACB200AA135E /* MarketDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataModel.swift; sourceTree = "<group>"; };
+		B9DA1417280EB04A00AA135E /* MarketDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				B9D83A862809846C00D14135 /* ApiService.swift */,
 				B9C13C342809B65A00397D2B /* CoinDataService.swift */,
 				B91ED38D280AC90000941C04 /* CoinImageService.swift */,
+				B9DA1417280EB04A00AA135E /* MarketDataService.swift */,
 				B9C13C362809C82000397D2B /* NetworkManager.swift */,
 				B939742D280C3887005FD439 /* LocalFileManager.swift */,
 			);
@@ -293,6 +296,7 @@
 				B939742E280C3887005FD439 /* LocalFileManager.swift in Sources */,
 				B955EDFC280D5BDC00ECD290 /* SearchBarView.swift in Sources */,
 				B955EE04280D958A00ECD290 /* HomeStatsView.swift in Sources */,
+				B9DA1418280EB04A00AA135E /* MarketDataService.swift in Sources */,
 				B9CA7E09280845A900FCC4B9 /* CircleButtonView.swift in Sources */,
 				B9C13C372809C82000397D2B /* NetworkManager.swift in Sources */,
 				B9CA7DFC280843BA00FCC4B9 /* Color.swift in Sources */,
