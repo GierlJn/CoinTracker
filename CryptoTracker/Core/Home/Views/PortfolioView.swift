@@ -38,23 +38,17 @@ struct PortfolioView: View {
         }
         
         ToolbarItem(placement: .navigationBarTrailing) {
-      
-            Button {
-              saveButtonPressed()
-            } label: {
-              HStack{
-                Image(systemName: "checkmark")
-                  .opacity(showCheckmark ? 1.0 : 0.0)
-                Text("Save".uppercased())
-                  .font(.headline)
-                  .opacity(selectedCoin != nil && selectedCoin?.currentHoldings != Double(quantityText) ? 1.0 : 0.0)
-              }
-            
-            }
+          saveButton
         }
       })
+      .onChange(of: vm.searchText) { newValue in
+        if newValue == ""{
+          removeSelectedCoin()
+        }
+      }
       .navigationTitle("Edit Portfolio")
     }
+    
   }
 }
 
@@ -92,6 +86,20 @@ extension PortfolioView{
             }
           }
         }
+      }
+    }
+  }
+  
+  private var saveButton: some View{
+    Button {
+      saveButtonPressed()
+    } label: {
+      HStack{
+        Image(systemName: "checkmark")
+          .opacity(showCheckmark ? 1.0 : 0.0)
+        Text("Save".uppercased())
+          .font(.headline)
+          .opacity(selectedCoin != nil && selectedCoin?.currentHoldings != Double(quantityText) ? 1.0 : 0.0)
       }
     }
   }
