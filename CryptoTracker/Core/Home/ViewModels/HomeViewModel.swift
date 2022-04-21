@@ -50,11 +50,20 @@ class HomeViewModel: ObservableObject{
           coin.currentHoldingsValue + partialResult
         }
         
+        let previousValue = portfolioCoins.map { coin -> Double in
+          let currentValue = coin.currentHoldingsValue
+          let percentageChange = coin.wrappedPriceChangePercentage24H
+          return currentValue / (1 + percentageChange)
+        }
+          .reduce(0, +)
+        
+        let percentageChange = ((portfolioSum - previousValue) / previousValue)
+        
         stats = [
           StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd),
           StatisticModel(title: "24h Volume", value: data.volume),
           StatisticModel(title: "BTC Docminance", value: data.btcDominance),
-          StatisticModel(title: "Portfolio Value", value: "$\(portfolioSum.asUsd2Decimal())", percentageChange: 0)
+          StatisticModel(title: "Portfolio Value", value: "$\(portfolioSum.asUsd2Decimal())", percentageChange: percentageChange)
         ]
         return stats
       }

@@ -40,7 +40,7 @@ struct CoinModel: Identifiable, Codable, Equatable {
   }
   
   var wrappedCurrentPrice: Double{
-    currentPrice ?? 0
+    (currentPrice ?? 0)  / 100
   }
   
   mutating func updateHoldings(amount: Double) -> CoinModel {
