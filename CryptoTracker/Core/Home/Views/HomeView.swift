@@ -34,6 +34,11 @@ struct HomeView: View {
 //        await viewModel.fetchAllCoins()
 //      }
     }
+    
+    .refreshable {
+      vm.updateCoins()
+    }
+    
     .sheet(isPresented: $showsPortfolioView) {
       PortfolioView().environmentObject(vm)
     }
@@ -85,7 +90,7 @@ extension HomeView{
   
   var portfolioCoinsList: some View{
     List(vm.portfolioCoins){ coin in
-      CoinRowView(coin: coin, showHoldings: false)
+      CoinRowView(coin: coin, showHoldings: true)
         .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
         .task{
           if coin == vm.allCoins.last{

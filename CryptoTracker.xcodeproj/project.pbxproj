@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9017D0728115A3C006218A3 /* PortfolioEntity+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9017D0628115A3C006218A3 /* PortfolioEntity+Ext.swift */; };
 		B91ED38C280AC5C700941C04 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91ED38B280AC5C700941C04 /* CoinImageView.swift */; };
 		B91ED38E280AC90000941C04 /* CoinImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91ED38D280AC90000941C04 /* CoinImageService.swift */; };
 		B91ED390280AD3A200941C04 /* CoinImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91ED38F280AD3A200941C04 /* CoinImageViewModel.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B9017D0628115A3C006218A3 /* PortfolioEntity+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PortfolioEntity+Ext.swift"; sourceTree = "<group>"; };
 		B91ED38B280AC5C700941C04 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
 		B91ED38D280AC90000941C04 /* CoinImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageService.swift; sourceTree = "<group>"; };
 		B91ED38F280AD3A200941C04 /* CoinImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageViewModel.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				B9D83A7B2809746C00D14135 /* MockData.swift */,
 				B9DA1415280EACB200AA135E /* MarketDataModel.swift */,
 				B9D06FDC2810535900DC478A /* PortfolioContainer.xcdatamodeld */,
+				B9017D0628115A3C006218A3 /* PortfolioEntity+Ext.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				B955EE02280D8D7000ECD290 /* StatisticView.swift in Sources */,
 				B9C13C352809B65A00397D2B /* CoinDataService.swift in Sources */,
 				B9D83A7C2809746C00D14135 /* MockData.swift in Sources */,
+				B9017D0728115A3C006218A3 /* PortfolioEntity+Ext.swift in Sources */,
 				B91ED390280AD3A200941C04 /* CoinImageViewModel.swift in Sources */,
 				B9D83A872809846C00D14135 /* ApiService.swift in Sources */,
 				B9D83A842809836F00D14135 /* HomeViewModel.swift in Sources */,

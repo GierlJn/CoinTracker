@@ -33,16 +33,28 @@ class HomeViewModel: ObservableObject{
     fetchPortfolio()
   }
   
+  func updateCoins(){
+    coinDataService.getCoins()
+    marketDataService.getData()
+    
+  }
+  
   func fetchMarketData(){
     marketDataService.$marketData
-      .map{ (marketDataModel) -> [StatisticModel] in
+      .combineLatest($portfolioCoins)
+      .map{ (marketDataModel, portfolioCoins) -> [StatisticModel] in
         var stats = [StatisticModel]()
         guard let data = marketDataModel else { return stats }
+        
+        let portfolioSum = portfolioCoins.reduce(0) { partialResult, coin in
+          coin.currentHoldingsValue + partialResult
+        }
+        
         stats = [
           StatisticModel(title: "Market Cap", value: data.marketCap, percentageChange: data.marketCapChangePercentage24HUsd),
           StatisticModel(title: "24h Volume", value: data.volume),
           StatisticModel(title: "BTC Docminance", value: data.btcDominance),
-          StatisticModel(title: "Portfolio Value", value: "$0.0", percentageChange: 0)
+          StatisticModel(title: "Portfolio Value", value: "$\(portfolioSum.asUsd2Decimal())", percentageChange: 0)
         ]
         return stats
       }
