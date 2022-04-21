@@ -9,6 +9,7 @@ import Foundation
 
 
 struct CoinModel: Identifiable, Codable, Equatable {
+
   static func == (lhs: CoinModel, rhs: CoinModel) -> Bool {
     lhs.id == rhs.id
     

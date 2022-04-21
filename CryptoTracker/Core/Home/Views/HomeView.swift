@@ -104,13 +104,33 @@ extension HomeView{
   
   var columnTitles: some View{
     HStack{
-      Text("Coins")
+      Button {
+        vm.sortOption = vm.sortOption == .rank ? .rankReversed : .rank
+        }
+       label: {
+        Text("Coins")
+      }
+      .tint(Color.colorTheme.accent)
+
+      
       Spacer()
       if vm.showPortfolio{
-        Text("Holdings")
+        Button {
+          vm.sortOption = vm.sortOption == .holding ? .holdingReversed : .holding
+          }
+         label: {
+          Text("Holdings")
+        }
+        .tint(Color.colorTheme.accent)
       }
       Spacer()
-      Text("Price")
+      Button {
+        vm.sortOption = vm.sortOption == .price ? .priceReversed : .price
+        }
+       label: {
+        Text("Price")
+      }
+      .tint(Color.colorTheme.accent)
     }
     .foregroundColor(Color.colorTheme.secondaryText)
     .font(.caption)

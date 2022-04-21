@@ -8,6 +8,10 @@
 import SwiftUI
 import Combine
 
+enum SortOption {
+  case rank, rankReversed, holding, holdingReversed, price, priceReversed
+}
+
 class HomeViewModel: ObservableObject{
   @Published var showPortfolio =  true
   @Published var allCoins = [CoinModel]()
@@ -20,6 +24,7 @@ class HomeViewModel: ObservableObject{
     StatisticModel(title: "Title", value: "$12B", percentageChange: 4)
   ]
   @Published var marketData: MarketDataModel?
+  @Published var sortOption: SortOption = .holding
   
   private var cancellables = Set<AnyCancellable>()
   private let coinDataService = CoinDataService()
@@ -36,7 +41,6 @@ class HomeViewModel: ObservableObject{
   func updateCoins(){
     coinDataService.getCoins()
     marketDataService.getData()
-    
   }
   
   func fetchMarketData(){
@@ -75,9 +79,9 @@ class HomeViewModel: ObservableObject{
   
   func fetchCoins(){
     $searchText
-      .combineLatest(coinDataService.$allCoins)
+      .combineLatest(coinDataService.$allCoins, $sortOption)
       .debounce(for: 0.5, scheduler: DispatchQueue.main)
-      .map(filterCoins)
+      .map(filterAndSortCoins)
       .sink { [weak self] returnedCoins in
         self?.allCoins = returnedCoins
       }
@@ -105,14 +109,32 @@ class HomeViewModel: ObservableObject{
     portfolioDataService.updatePortfolio(coin: coin, amount: amount)
   }
   
+  private func filterAndSortCoins(inputString: String, coinArray: [CoinModel], sortOption: SortOption) -> [CoinModel]{
+    let filtered = filterCoins(inputString: inputString, coinArray: coinArray)
+    switch sortOption {
+    case .rank:
+      return filtered.sorted(by: {$0.rank > $1.rank})
+    case .rankReversed:
+      return filtered.sorted(by: {$0.rank < $1.rank})
+    case .holding:
+      return filtered.sorted(by: {$0.wrappedCurrentHoldings > $1.wrappedCurrentHoldings})
+    case .holdingReversed:
+      return filtered.sorted(by: {$0.wrappedCurrentHoldings < $1.wrappedCurrentHoldings})
+    case .price:
+      return filtered.sorted(by: {$0.wrappedCurrentPrice > $1.wrappedCurrentPrice})
+    case .priceReversed:
+      return filtered.sorted(by: {$0.wrappedCurrentPrice > $1.wrappedCurrentPrice})
+    }
+  }
+  
   private func filterCoins(inputString: String, coinArray: [CoinModel]) -> [CoinModel]{
     guard !inputString.isEmpty else {  return coinArray }
     let inputString = inputString.lowercased()
-    return coinArray.filter { coin in
+    let filtered = coinArray.filter { coin in
       return coin.name.lowercased().contains(inputString) ||
       coin.id.lowercased().contains(inputString) ||
       coin.symbol.lowercased().contains(inputString)
     }
+    return filtered
   }
-  
 }
