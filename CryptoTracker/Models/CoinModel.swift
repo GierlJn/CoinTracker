@@ -16,7 +16,7 @@ struct CoinModel: Identifiable, Codable, Equatable {
   
   let id, symbol, name: String
   let image: String
-  let currentPrice: Double
+  let currentPrice: Double?
   let marketCap, marketCapRank, fullyDilutedValuation: Double?
   let totalVolume, high24H, low24H: Double?
   let priceChange24H: Double?
@@ -40,7 +40,7 @@ struct CoinModel: Identifiable, Codable, Equatable {
   }
   
   var wrappedCurrentPrice: Double{
-    (currentPrice ?? 0)  / 100
+    currentPrice ?? 0
   }
   
   mutating func updateHoldings(amount: Double) -> CoinModel {
@@ -49,7 +49,7 @@ struct CoinModel: Identifiable, Codable, Equatable {
   }
   
   var currentHoldingsValue: Double {
-    return (currentHoldings ?? 0) * currentPrice
+    return (currentHoldings ?? 0) * wrappedCurrentPrice
   }
   
   var wrappedCurrentHoldings: Double{

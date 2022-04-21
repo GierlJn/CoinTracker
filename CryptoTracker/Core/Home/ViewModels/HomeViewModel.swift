@@ -52,7 +52,7 @@ class HomeViewModel: ObservableObject{
         
         let previousValue = portfolioCoins.map { coin -> Double in
           let currentValue = coin.currentHoldingsValue
-          let percentageChange = coin.wrappedPriceChangePercentage24H
+          let percentageChange = coin.wrappedPriceChangePercentage24H / 100
           return currentValue / (1 + percentageChange)
         }
           .reduce(0, +)

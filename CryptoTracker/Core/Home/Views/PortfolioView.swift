@@ -109,7 +109,7 @@ extension PortfolioView{
       HStack{
         Text("Current price of \(selectedCoin?.symbol.uppercased() ?? ""):")
         Spacer()
-        Text(selectedCoin?.currentPrice.asUsd2Decimal() ?? "")
+        Text(selectedCoin?.currentPrice?.asUsd2Decimal() ?? "")
       }
       Divider()
       HStack{
