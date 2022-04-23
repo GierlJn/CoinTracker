@@ -7,14 +7,29 @@
 
 import SwiftUI
 
-struct DetailView: View {
-  let coin: CoinModel?
+struct DetailLoadingView: View {
+  
+  @Binding var coin: CoinModel?
+  
     var body: some View {
-      Text(coin?.name ?? "")
+      ZStack{
+        if let coin = coin{
+          DetailView(coin: coin)
+        }
+      }
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
+struct DetailView: View{
+  
+  let coin: CoinModel
+  
+  var body: some View{
+    Text(coin.name)
+  }
+}
+
+struct DetailLoadingView_Previews: PreviewProvider {
     static var previews: some View {
       DetailView(coin: CoinModel.mockData)
     }

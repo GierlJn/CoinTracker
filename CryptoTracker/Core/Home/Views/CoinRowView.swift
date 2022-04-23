@@ -33,6 +33,9 @@ struct CoinRowView: View {
           Text("\(coin.wrappedPriceChangePercentage24H.asPercentString())")
         }
       }
+      .background{
+        Color.colorTheme.background.opacity(0.001)
+      }
       .font(.subheadline)
     }
 }
