@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct DetailView: View {
-  let coin: CoinModel
+  let coin: CoinModel?
     var body: some View {
-      Text(coin.name)
+      Text(coin?.name ?? "")
     }
 }
 

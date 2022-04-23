@@ -13,7 +13,7 @@ enum SortOption {
 }
 
 class HomeViewModel: ObservableObject{
-  @Published var showPortfolio =  true
+  @Published var showPortfolio =  false
   @Published var allCoins = [CoinModel]()
   @Published var portfolioCoins = [CoinModel]()
   @Published var searchText = ""

@@ -12,6 +12,9 @@ struct HomeView: View {
   @EnvironmentObject private var vm: HomeViewModel
   @State var showsPortfolioView = false
   
+  @State var showsDetailView = false
+  @State var selectedCoin: CoinModel?
+  
   var body: some View {
     ZStack{
       Color.colorTheme.background
@@ -30,15 +33,17 @@ struct HomeView: View {
         }
         Spacer()
       }
-//      .task {
-//        await viewModel.fetchAllCoins()
-//      }
     }
-    
+    .background{
+      NavigationLink(isActive: $showsDetailView) {
+        DetailView(coin: selectedCoin)
+      } label: {
+        EmptyView()
+      }
+    }
     .refreshable {
       vm.updateCoins()
     }
-    
     .sheet(isPresented: $showsPortfolioView) {
       PortfolioView().environmentObject(vm)
     }
@@ -53,7 +58,7 @@ extension HomeView{
       } label: {
         CircleButtonView(iconName: vm.showPortfolio ? "plus" : "info")
           .background{
-            CircleButtonAnimationView(animate: $vm.showPortfolio)
+            CircleButtonAnimationView(animate: vm.showPortfolio)
           }
       }
       Spacer()
@@ -78,10 +83,9 @@ extension HomeView{
     List(vm.allCoins){ coin in
       CoinRowView(coin: coin, showHoldings: false)
         .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
-        .task{
-          if coin == vm.allCoins.last{
-            //await viewModel.fetchAllCoins()
-          }
+        .onTapGesture {
+          selectedCoin = coin
+          showsDetailView.toggle()
         }
     }
     .listStyle(PlainListStyle())
@@ -92,10 +96,9 @@ extension HomeView{
     List(vm.portfolioCoins){ coin in
       CoinRowView(coin: coin, showHoldings: true)
         .listRowInsets(.init(top: 10, leading: 10, bottom: 10, trailing: 10))
-        .task{
-          if coin == vm.allCoins.last{
-            //await viewModel.fetchAllCoins()
-          }
+        .onTapGesture {
+          selectedCoin = coin
+          showsDetailView.toggle()
         }
     }
     .listStyle(PlainListStyle())
