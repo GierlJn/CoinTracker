@@ -22,10 +22,16 @@ struct DetailLoadingView: View {
 
 struct DetailView: View{
   
-  let coin: CoinModel
+  @StateObject private var vm: CoinDetailViewModel
   
+  init(coin: CoinModel){
+    _vm = StateObject(wrappedValue: CoinDetailViewModel(coin: coin))
+  }
   var body: some View{
-    Text(coin.name)
+    VStack{
+      
+      Text(vm.links?.subredditURL ?? "reddit N/A")
+    }
   }
 }
 
